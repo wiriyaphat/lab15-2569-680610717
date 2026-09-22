@@ -11,29 +11,27 @@ import { Badge } from "../components/ui/badge";
 import { Trash2 } from "lucide-react";
 import { currentUser, initialCourses } from "../lib/mock-data";
 
-const Months = [
-  "ม.ค.",
-  "ก.พ.",
-  "มี.ค.",
-  "เม.ย.",
-  "พ.ค.",
-  "มิ.ย.",
-  "ก.ค.",
-  "ส.ค.",
-  "ก.ย.",
-  "ต.ค.",
-  "พ.ย.",
-  "ธ.ค.",
-];
-
 function formatEnrollmentDate(value?: string) {
   if (!value) return "วันนี้";
 
-  const [date, time] = value.split("T");
-  const [year, month, day] = date.split("-").map(Number);
+  const [datePart, timePart] = value.split("T");
+  const [year, month, day] = datePart.split("-").map(Number);
 
-  const buddhistYear = year >= 2400 ? year : year + 543;
-  return `${day} ${Months[month - 1]} ${buddhistYear} ${time?.slice(0, 5) ?? ""}`.trim();
+  const gregorianYear = year >= 2400 ? year - 543 : year;
+  const dateObj = new Date(gregorianYear, month - 1, day);
+
+  // ใช้ Intl.DateTimeFormat จัดรูปแบบวันที่และแสดงผลเป็น พ.ศ. (ภาษาไทย)
+  const dateFormatter = new Intl.DateTimeFormat("th-TH", {
+    calendar: "buddhist",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const formattedDate = dateFormatter.format(dateObj);
+  const timeStr = timePart?.slice(0, 5) ?? "";
+
+  return `${formattedDate} ${timeStr}`.trim();
 }
 
 export default function EnrollmentPage() {
