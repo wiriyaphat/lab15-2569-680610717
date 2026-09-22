@@ -25,6 +25,13 @@ export function RegisterDialog({
   const [open, setOpen] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState("");
 
+  const handleOpenChange = (nextOpen: boolean) => {
+    setOpen(nextOpen);
+    if (!nextOpen) {
+      setSelectedCourseId("");
+    }
+  };
+
   const getCurrentTime = () => {
     const now = new Date();
     return now.toTimeString().slice(0, 5);
@@ -54,7 +61,7 @@ export function RegisterDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger>
         <Button>+ ลงทะเบียน</Button>
       </DialogTrigger>
