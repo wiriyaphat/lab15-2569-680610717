@@ -2,10 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import { ThemeProvider } from "@/components/theme-provider";
-import RootLayout from "@/layouts/root-layout";
-import HomePage from "@/pages/HomePage";
-import EnrollmentPage from "@/pages/EnrollmentPage";
+import { ThemeProvider } from "./components/ui/theme-provider";
+import RootLayout from "./layouts/root-layout";
+import HomePage from "./pages/HomePage";
+import EnrollmentPage from "./pages/EnrollmentPage";
 
 import "./index.css";
 

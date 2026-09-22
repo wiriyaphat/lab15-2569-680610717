@@ -11,6 +11,7 @@ interface Course {
   courseId: string;
   courseTitle: string;
   instructors: string[];
+  isEnrolled?: boolean;
 }
 export type { Course };
 
@@ -20,3 +21,13 @@ interface Enrollment {
   enrolledAt?: string; // เวลาที่ลงทะเบียน แบบ ISO 8601 เช่น "2026-09-13T14:15:00"
 }
 export type { Enrollment };
+
+interface EnrollmentCourse {
+  id: string;
+  code: string;
+  name: string;
+  instructor: string;
+  isEnrolled: boolean;
+  enrolledAt?: string;
+}
+export type { EnrollmentCourse };

@@ -1,4 +1,4 @@
-import type { Student, Course, Enrollment } from "@/lib/types";
+import type { Student, Course, Enrollment, EnrollmentCourse } from "./types";
 
 export const students: Student[] = [
   {
@@ -15,7 +15,7 @@ export const students: Student[] = [
     courses: ["261207", "261497"],
   },
   {
-    studentId: "650610003", // ⚠️ ต้นฉบับพิมพ์ผิดเป็น "650615003" — ต้องตรงกับ enrollments ด้านล่าง
+    studentId: "650610003",
     firstName: "Emily",
     lastName: "Blunt",
     program: "ISNE",
@@ -71,9 +71,37 @@ export const currentStudent = students.find(
   (s) => s.studentId === CURRENT_STUDENT_ID,
 )!;
 
-// ข้อมูลส่วนแสดงสถานะผู้ใช้ที่ Sidebar (ข้อ 5 ของโจทย์) — แก้เป็นชื่อเล่นและรูปของตัวเอง
 export const currentUser = {
-  nickname: "Cillian",
-  role: "STUDENT" as "STUDENT" | "ADMIN",
-  avatar: "/profile.svg", // วางรูปไว้ที่ public/
+  name: "Wiriyaphat Phromphong",
+  nickname: "Thiw",
+  studentId: "680610717",
+  program: "CPE",
+  role: "STUDENT",
+  avatar: "/AngryProfile.jpg", // URL
 };
+
+export const initialCourses: EnrollmentCourse[] = [
+  {
+    id: "261207",
+    code: "261207",
+    name: "Basic Computer Engineering Lab",
+    instructor: "Dome, Chanadda",
+    isEnrolled: false,
+  },
+  {
+    id: "261497",
+    code: "261497",
+    name: "Full Stack Development",
+    instructor: "Dome, Nirand, Chanadda",
+    isEnrolled: true,
+    enrolledAt: "2569-09-14T09:30:00",
+  },
+  {
+    id: "269101",
+    code: "269101",
+    name: "Introduction to Information Systems and Network Engineering",
+    instructor: "KENNETH COSH",
+    isEnrolled: true,
+    enrolledAt: "2569-09-21T22:21:00",
+  },
+];
